@@ -1,0 +1,199 @@
+public class String2 {
+    public static String wordEnds(String str, String word) {
+        String temp = "";
+        int st = str.indexOf(word);
+        while (st != -1) {
+            if (st != 0) temp += str.charAt(st - 1);
+            if (st + word.length() == str.length()) break;
+            temp += str.charAt(st + word.length());
+            st = str.indexOf(word, st + 1);
+        }
+        return temp;
+    }
+    public static String plusOut(String str, String word) {
+        int st = 0;
+        int en = str.indexOf(word);
+        while (en != -1) {
+            for (int i = st; i < en; i++)
+                str = str.substring(0, i) + "+" + str.substring(i + 1);
+            st = en + word.length();
+            en = str.indexOf(word, st);
+        }
+        for (int i = st; i < str.length(); i++)
+            str = str.substring(0, i) + "+" + str.substring(i + 1);
+        return str;
+    }
+    public static String starOut(String str) {
+        while (str.contains("*")) {
+            if (str.equals("*")) return "";
+            int fStar = str.indexOf('*');
+            int sStar = str.indexOf('*', fStar+1);
+            if (sStar - fStar == 1) {
+                str = str.substring(0, fStar) + str.substring(sStar);
+                continue;
+            }
+            if (fStar == 0) str = str.substring(fStar + 2);
+            else if (fStar == str.length()-1)
+                str = str.substring(0, str.length()-2);
+            else str = str.substring(0, fStar - 1) + str.substring(fStar + 2);
+        }
+        return str;
+    }
+    public static String zipZap(String str) {
+        for (int i = 1; i < str.length() - 1; i++)
+            if (str.charAt(i - 1) == 'z' && str.charAt(i + 1) == 'p')
+                str = str.substring(0, i) + str.substring(i + 1);
+        return str;
+    }
+    public static String oneTwo2mv(String str) {
+        StringBuilder temp = new StringBuilder(str);
+        for (int i = 0; i < str.length() - 2; i += 3)
+            temp.insert(i + 3, str.charAt(i)).deleteCharAt(i);
+        return temp.toString();
+    }
+    public static String oneTwo(String str) {
+        String temp = "";
+        for (int i = 0; i < str.length() - 2; i += 3) {
+            temp += str.substring(i + 1, i + 3);
+            temp += str.charAt(i);
+        }
+        return temp;
+    }
+    public static boolean sameStarChar(String str) {
+        for (int i = 1; i < str.length() - 1; i++)
+            if (str.charAt(i) == '*')
+                if (str.charAt(i - 1) != str.charAt(i + 1))
+                    return false;
+        return true;
+    }
+    public static String getSandwich(String str) {
+        if (str.length() >= 10)
+            if (str.contains("bread"))
+                if (str.indexOf("bread") != str.lastIndexOf("bread"))
+                    return str.substring(str.indexOf("bread") + 5, str.lastIndexOf("bread"));
+        return "";
+    }
+    public static boolean xyzMiddle(String str) {
+        int ind = str.indexOf("xyz");
+        while (ind >= 0 && ind < str.length() - 2) {
+            if (Math.abs(ind - (str.length() - ind - 3)) < 2)
+                return true;
+            if (str.substring(ind + 3).contains("xyz"))
+                ind = ind + 3 + str.substring(ind + 3).indexOf("xyz");
+            else
+                return false;
+        }
+        return false;
+    }
+    public static boolean prefixAgain(String str, int n) {
+        String temp = str.substring(0, n);
+        return str.substring(n).contains(temp);
+    }
+    public static String repeatSeparator(String word, String sep, int count) {
+        String temp = new String();
+        for (int i = 0; i < count; i++) {
+            temp += word;
+            if (i + 1 < count)
+                temp += sep;
+        }
+        return temp;
+    }
+    public static String repeatFront(String str, int n) {
+        String temp = new String();
+        for (int i = 0; i < n; i++)
+            temp += str.substring(0, n - i);
+        return temp;
+    }
+    public static String repeatEnd(String str, int n) {
+        String temp = "";
+        for (int i = 0; i < n; i++)
+            temp += str.substring(str.length() - n);
+        return temp;
+    }
+    public static String mixString(String a, String b) {
+        int i;
+        int size = a.length() > b.length() ? a.length() : b.length();
+        String temp = "";
+        for (i = 0; i < size; i++) {
+            if (i < a.length())
+                temp += a.charAt(i);
+            if (i < b.length())
+                temp += b.charAt(i);
+        }
+        return temp;
+    }
+    public static boolean xyBalance(String str) {
+        int xInd = -1;
+        int yInd = 0;
+        for (int i = str.length() - 1; i >= 0; i--) {
+            if (str.charAt(i) == 'y' && yInd == 0) yInd = i;
+            if (str.charAt(i) == 'x' && xInd == -1) xInd = i;
+        }
+        return yInd > xInd;
+    }
+    public static boolean bobThere(String str) {
+        if (str.length() >= 3)
+            for (int i = 0; i < str.length() - 2; i++)
+                if (str.charAt(i) == 'b' && str.charAt(i + 2) == 'b')
+                    return true;
+        return false;
+    }
+    public static boolean xyzThere(String str) {
+        if (str.contains("xyz")) {
+            if (str.startsWith("xyz"))
+                return true;
+            else if (str.charAt(str.indexOf("xyz") - 1) == '.')
+                return xyzThere(str.substring(str.indexOf("xyz") + 3));
+            else return true;
+        }
+        return false;
+    }
+    public static boolean endOther(String a, String b) {
+        int size = a.length() > b.length() ? b.length() : a.length();
+        return a.substring(a.length() - size)
+                .toLowerCase()
+                .equals(b.substring(b.length() - size).toLowerCase());
+    }
+    public static int countCode(String str) {
+        if (str.length() <= 3)
+            return 0;
+        if (str.charAt(0) == 'c' && str.charAt(1) == 'o' && str.charAt(3) == 'e')
+            return 1 + countCode(str.substring(1));
+        return countCode(str.substring(1));
+    }
+    public static boolean catDog(String str) {
+        int catCount = 0;
+        int dogCount = 0;
+        String temp = str;
+        while (true) {
+            if (temp.contains("cat")) {
+                catCount++;
+                temp = temp.substring(temp.indexOf("cat") + 3);
+            }
+            else break;
+        }
+        temp = str;
+        while (true) {
+            if (temp.contains("dog")) {
+                dogCount++;
+                temp = temp.substring(temp.indexOf("dog") + 3);
+            }
+            else break;
+        }
+        return catCount == dogCount;
+    }
+    public static int countHi(String str) {
+        if (str.length() < 2)
+            return 0;
+        return str.contains("hi") ? 1 + countHi(str.substring(str.indexOf("hi") + 2)) : 0;
+    }
+    public static String doubleChar(String str) {
+        StringBuilder temp = new StringBuilder();
+        for (char a : str.toCharArray())
+            temp.append(a).append(a);
+        return temp.toString();
+    }
+    public static void sh(Object ob) {
+        System.out.println(ob);
+    }
+}

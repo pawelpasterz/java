@@ -1,0 +1,161 @@
+public String stringTimes(String str, int n) {
+  String temp = "";
+        for (int i =1; i <= n; i++)
+            temp += str;
+        return temp;
+}
+public String frontTimes(String str, int n) {
+  String temp = "";
+        String temp2 = "";
+        if (str.length() <= 3)
+            temp2 = str;
+        else
+            temp2 = str.substring(0, 3);
+        for (int i =1; i <= n; i++)
+            temp += temp2;
+        return temp;
+}
+int countXX(String str) {
+  int list = 0;
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == 'x' && str.charAt(i + 1) == 'x')
+                list++;
+        }
+        return list;
+}
+boolean doubleX(String str) {
+   for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == 'x') {
+                if (str.charAt(i + 1) == 'x')
+                    return true;
+                return false;
+            }
+        }
+        return false;
+}
+public String stringBits(String str) {
+  StringBuilder temp = new StringBuilder();
+        for (int i = 0; i < str.length(); i+=2)
+            temp.append(str.charAt(i));
+        return temp.toString();
+}
+public String stringSplosion(String str) {
+  if (str.length() <= 1)
+            return str;
+        StringBuilder temp = new StringBuilder();
+        for (int i = 0; i <= str.length(); i++)
+            temp.append(str.substring(0, i));
+        return temp.toString();
+}
+public int last2(String str) {
+  if (str.length() <= 2)
+            return 0;
+        String temp = str.substring(str.length() - 2);
+        int count = 0;
+        for (int i = 0; i < str.length() - 2; i++){
+            if (str.substring(i, i+2).equals(temp))
+                count++;
+        }
+        return count;
+}
+public int arrayCount9(int[] nums) {
+  int count = 0;
+        for (int e : nums)
+            if (e == 9)
+                count++;
+        return count;
+}
+public boolean arrayFront9(int[] nums) {
+  for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 9)
+                return true;
+            if (i == 3)
+                break;
+        }
+        return false;
+}
+public boolean array123(int[] nums) {
+  for (int i = 0; i < nums.length - 2; i++)
+            if (nums[i] == 1 && nums[i + 1] == 2 && nums[i + 2] == 3)
+                return true;
+        return false;
+}
+public int stringMatch(String a, String b) {
+   String sub1 = "";
+        int count = 0;
+        int size = a.length() > b.length() ? b.length() : a.length();
+        for (int i = 0; i < size - 1; i++) {
+            if (a.substring(i, i + 2).equals(b.substring(i, i + 2)))
+                count++;
+        }
+        return count;
+}
+public String stringX(String x) {
+  if (x.length() <= 1) return x;
+        StringBuilder temp = new StringBuilder();
+        temp.append(x.charAt(0));
+        for (int i = 1; i < x.length() - 1; i++)
+            if (x.charAt(i) != 'x')
+                temp.append(x.charAt(i));
+        temp.append(x.charAt(x.length() - 1));
+        return temp.toString();
+}
+public String altPairs(String str) {
+  StringBuilder temp = new StringBuilder();
+        for (int i = 0;; i+=4) {
+            if (i >= str.length())
+                break;
+            temp.append(str.charAt(i));
+            if (i + 1 >= str.length())
+                break;
+            temp.append(str.charAt(i + 1));
+        }
+        return temp.toString();
+}
+public String stringYak(String str) {
+  String result = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (i + 2 < str.length() && str.charAt(i) == 'y' && str.charAt(i + 2) == 'k')
+                i =  i + 2;
+            else
+                result = result + str.charAt(i);
+        }
+        return result;
+}
+public int array667(int[] nums) {
+  int twoSix = 0;
+        int count = 0;
+        for (int e : nums) {
+            if (e == 6)
+                if (twoSix == 0)
+                    twoSix++;
+                else
+                    count++;
+            else if (e == 7 && twoSix == 1) {
+                count++;
+                twoSix = 0;
+            }
+            else
+                twoSix = 0;
+        }
+        return count;
+}
+public boolean noTriples(int[] nums) {
+  for (int i = 0; i < nums.length - 2; i++)
+            if (nums[i] == nums[i + 1] && nums[i + 1] == nums[i + 2])
+                return false;
+        return true;
+}
+public boolean has271(int[] nums) {
+   if (nums.length < 3)
+            return false;
+        int v1, v2, v3;
+        for (int i = 0; i < nums.length - 2; i++) {
+            v1 = nums[i];
+            v2 = nums[i + 1];
+            v3 = nums[i + 2];
+            if (v2 == (v1 + 5) && Math.abs(v3 - (v1 - 1)) <= 2)
+                return true;
+        }
+        return false;
+}

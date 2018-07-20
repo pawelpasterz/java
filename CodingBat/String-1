@@ -1,0 +1,244 @@
+public class String1 {
+
+    public static String withoutX2(String str) {
+        if ( str.length() == 0 || (str.length() == 1 && str.charAt(0) == 'x'))
+            return "";
+        StringBuilder temp = new StringBuilder(str);
+        if (temp.charAt(0) == 'x') {
+            temp.deleteCharAt(0);
+            if (temp.charAt(0) == 'x')
+                temp.deleteCharAt(0);
+        }
+        else if (temp.charAt(1) == 'x')
+            temp.deleteCharAt(1);
+        return temp.toString();
+    }
+    public static String withoutX(String str) {
+        if (str.length() == 0)
+            return "";
+        StringBuilder temp = new StringBuilder(str);
+        if (temp.charAt(0) == 'x') {
+            if (temp.length() == 1)
+                return "";
+            else
+                temp.deleteCharAt(0);
+        }
+        if (temp.charAt(temp.length() - 1) == 'x')
+            temp.deleteCharAt(temp.length() - 1);
+        return temp.toString();
+    }
+    public static String startWord(String str, String word) {
+        if (str.length() >= 1 && word.length() == 1)
+            return str.substring(0, 1);
+        if (str.length() > 1 && str.substring(1).contains(word.substring(1)))
+            return str.substring(0, word.length());
+        return "";
+    }
+    public static String deFront(String str) {
+        if (str.length() == 0)
+            return "";
+        StringBuilder temp = new StringBuilder(str);
+        int i = 0;
+        if (temp.charAt(0) != 'a')
+            i = 2;
+        if (temp.charAt(1) != 'b')
+            i++;
+        switch (i) {
+            case 1:
+                temp.deleteCharAt(1);
+                break;
+            case 2:
+                temp.deleteCharAt(0);
+                break;
+            case 3:
+                temp.deleteCharAt(1);
+                temp.deleteCharAt(0);
+                break;
+            default:
+                break;
+        }
+        return temp.toString();
+    }
+    public static String withOut2(String str) {
+        if (str.length() > 1 && str.substring(0, 2).equals(str.substring(str.length() - 2)))
+            return str.substring(2);
+        return str;
+    }
+    public static String extraFront(String str) {
+        String temp = "";
+        if (str.length() <= 2)
+            temp = str;
+        else
+            temp = str.substring(0, 2);
+        return temp + temp + temp;
+    }
+    public static String minCat(String a, String b) {
+        int size = a.length() < b.length() ? a.length() : b.length();
+        return a.substring(a.length() - size) + b.substring(b.length() - size);
+    }
+    public static boolean frontAgain(String str) {
+        if (str.length() < 2)
+            return false;
+        String sub1 = str.substring(0, 2);
+        String sub2 = str.substring(str.length() - 2, str.length());
+        if (sub1.equals(sub2))
+            return true;
+        return false;
+    }
+    public static String seeColor(String str) {
+        if (str.length() > 2 && str.substring(0, 3).equals("red"))
+            return "red";
+        if (str.length() > 3 && str.substring(0, 4).equals("blue"))
+            return "blue";
+        return "";
+    }
+    public static String lastTwo(String str) {
+        String temp = "";
+        if (str.length() == 2) {
+            temp += str.charAt(1);
+            temp += str.charAt(0);
+        }
+        else if (str.length() > 2) {
+            temp += str.substring(0, str.length() - 2);
+            temp += str.charAt(str.length() - 1);
+            temp += str.charAt(str.length() - 2);
+        }
+        else
+            temp += str;
+        return temp;
+    }
+    public static String conCat(String a, String b) {
+        StringBuilder temp = new StringBuilder();
+        int inda = a.length();
+        int indb = b.length();
+        if (inda == 0)
+            return b;
+        else if (indb == 0)
+            return a;
+        temp.append(a).append(b);
+        if (temp.charAt(inda - 1) == temp.charAt(inda))
+            temp.deleteCharAt(inda);
+        return temp.toString();
+    }
+    public static String lastChars(String a, String b) {
+        String temp = "";
+        if (a.length() == 0 )
+            temp += "@";
+        else
+            temp += a.charAt(0);
+        if (b.length() == 0)
+            temp += "@";
+        else
+            temp += b.charAt(b.length() - 1);
+        return temp;
+    }
+    public static String atFirst(String str) {
+        int size = str.length();
+        switch (size) {
+            case 0:
+                return "@@";
+            case 1:
+                return str.substring(0, 1) + "@";
+            default:
+                return str.substring(0, 2);
+        }
+    }
+    public static boolean hasBad(String str) {
+        if (str.length() < 3)
+            return false;
+        if (str.substring(0, 3).equals("bad"))
+            return true;
+        if (str.length() == 3)
+            return false;
+        if  (str.substring(1, 4).equals("bad"))
+            return true;
+        return false;
+    }
+    public static String middleThree(String str) {
+        int ind = str.length() / 2 - 1;
+        return str.substring(ind, ind + 3);
+    }
+    public static String twoChar(String str, int index) {
+        String temp = "";
+        if (index <= str.length() - 2 && index >= 0)
+            temp += str.substring(index, index + 2);
+        else
+            temp += str.substring(0, 2);
+        return temp;
+    }
+    public static String nTwice(String str, int n) {
+        return str.substring(0, n) + str.substring(str.length() - n, str.length());
+    }
+    public static boolean endsLy(String str) {
+        if ( str.length() < 2)
+            return false;
+        int size = str.length();
+        if (str.substring(size - 2).equals("ly"))
+            return true;
+        return false;
+    }
+    public static String middleTwo(String str) {
+        if (str.length() == 2)
+            return str;
+        return str.substring(str.length() / 2 - 1, str.length() / 2 + 1);
+    }
+    public static String withoutEnd2(String str) {
+        String temp = "";
+        if (str.length() > 2)
+            temp += str.substring(1, str.length() - 1);
+        return temp;
+    }
+    public static String theEnd(String str, boolean front) {
+        if (str.length() < 2)
+            return str;
+        return front ? str.substring(0, 1) : str.substring(str.length() - 1, str.length());
+    }
+    public static String right2(String str) {
+        int size = str.length();
+        return str.substring(size - 2, size) + str.substring(0, size - 2);
+    }
+    public static String left2(String str) {
+        return str.substring(2) + str.substring(0, 2);
+    }
+    public static String nonStart(String a, String b) {
+        return a.substring(1) + b.substring(1);
+    }
+    public static String comboString(String a, String b) {
+        return a.length() < b.length() ? a + b + a : b + a + b;
+    }
+    public static String withoutEnd(String str) {
+        return str.substring(1, str.length() - 1);
+    }
+    public static String firstHalf(String str) {
+        return str.substring(0, str.length() / 2);
+    }
+    public static String firstTwo(String str) {
+        if (str.length() <= 2)
+            return str;
+        return str.substring(0, 2);
+    }
+    public static String extraEnd(String str) {
+        String temp = "";
+        if (str.length() >= 2) {
+            int j = str.length();
+            for (int i = 0; i < 3; i++)
+                temp += str.substring(j - 2, j);
+        }
+        return temp;
+    }
+    public static String makeOutWord(String out, String word) {
+        return out.substring(0, 2) + word + out.substring(2, 4);
+    }
+    public static String makeTags(String tag, String word) {
+        return "<" + tag + ">" + word + "</" + tag + ">";
+    }
+    public static String makeAbba(String a, String b) {
+        return a + b + b + a;
+    }
+    public static String helloName(String name) {
+        return "Hello " + name + "!";
+    }
+    public static void sh(Object ob) {
+        System.out.println(ob);
+    }
+}

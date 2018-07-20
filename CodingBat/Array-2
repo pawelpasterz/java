@@ -1,0 +1,340 @@
+public class Array2 {
+   public static String[] fizzBuzz(int start, int end) {
+        String[] temp = new String[end - start];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = String.valueOf(i + start);
+            if ((i + start) % 3 == 0 && (i + start) % 5 == 0)
+                temp[i] = "FizzBuzz";
+            else if ((i + start) % 3 == 0)
+                temp[i] = "Fizz";
+            else if ((i + start) % 5 == 0)
+                temp[i] = "Buzz";
+        }
+        return temp;
+    }
+    public static int[] evenOdd(int[] nums) {
+        int indEven = 0;
+        int indOdd = nums.length - 1;
+        int[] temp = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0)
+                temp[indEven++] = nums[i];
+            else
+                temp[indOdd--] = nums[i];
+        }
+        return temp;
+    }
+    public static int[] zeroMax(int[] nums) {
+        int value = 0;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] == 0) {
+                nums[i] = value;
+                value = 0;
+            }
+            if (nums[i] % 2 != 0 && nums[i] > value)
+                value = nums[i];
+        }
+        return nums;
+    }
+    public static int[] withoutTen(int[] nums) {
+        int[] temp = new int[nums.length];
+        for (int i = 0, j = 0; i < nums.length; i++)
+            if (nums[i] % 10 != 0)
+                temp[j++] = nums[i];
+        return temp;
+    }
+    public static int[] zeroFron(int[] nums) {
+        for (int i = 0; i < nums.length && nums.length > 1; i++) {
+            if (nums[i] == 0) {
+                int ind = i;
+                while (ind != 0 && nums[ind - 1] != 0) {
+                    nums[ind] = nums[ind - 1];
+                    nums[ind - 1] = 0;
+                    ind--;
+                }
+            }
+        }
+        return nums;
+    }
+    public static int[] notAlone(int[] nums, int val) {
+        for (int i = 1; i < nums.length - 1; i++) {
+            if (nums[i] == val)
+                if (nums[i - 1] != val && nums[i + 1] != val)
+                    nums[i] = nums[i - 1] > nums[i + 1] ? nums[i - 1] : nums[i + 1];
+        }
+        return nums;
+    }
+    public static int[] post4(int[] nums) {
+        int ind = 0;
+        for (int i = nums.length - 1; i > 0; i--) {
+            if (nums[i] == 4) {
+                ind = i;
+                break;
+            }
+        }
+        int[] temp = new int[nums.length - ind - 1];
+        for (int i = 0; i < temp.length; i++)
+            temp[i] = nums[i + ind + 1];
+        return temp;
+    }
+    public static int[] pre4(int[] nums) {
+        int ind = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 4) {
+                ind = i;
+                break;
+            }
+        }
+        int[] temp = new int[ind];
+        for (int i = 0; i < temp.length; i++)
+            temp[i] = nums[i];
+        return temp;
+    }
+    public static int[] tenRun(int[] nums) {
+        int val = -1;
+        int[] temp = nums;
+        for  (int i = 0; i < temp.length; i++) {
+            if (nums[i] % 10 == 0)
+                val = nums[i];
+            if  (val != -1)
+                temp[i] = val;
+        }
+        return nums;
+    }
+    public static int[] shiftLeft(int[] nums) {
+        int[] temp = new int[nums.length];
+        for (int i = 0; i < temp.length - 1; i++)
+            temp[i] = nums[i + 1];
+        if (temp.length > 0)
+            temp[temp.length - 1] = nums[0];
+        return temp;
+    }
+    public static int[] fizzArray3(int start, int end) {
+        int[] temp =  new int[end - start];
+        for (int i = start; i < end; i++)
+            temp[i - start] = i;
+        return temp;
+    }
+    public static boolean tripleUp(int[] nums) {
+        for (int i = 0; i < nums.length - 2; i++)
+            if (nums[i] + 1 == nums[i + 1] && nums[i + 1] + 1 == nums[i + 2])
+                return true;
+        return false;
+    }
+    public static boolean sameEnds(int[] nums, int len) {
+        for (int i = 0; i < len; i++)
+            if (nums[i] != nums[nums.length - len + i])
+                return false;
+        return true;
+    }
+    public static boolean twoTwo(int[] nums) {
+        int flag = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2) {
+                if ((i == nums.length -1 || nums[i + 1] != 2) && flag == 0)
+                    return false;
+                flag = 1;
+                continue;
+            }
+            flag = 0;
+        }
+        return true;
+    }
+    public static boolean haveThree(int[] nums) {
+        int count3 = 0;
+        int pos3 = -2;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 3) {
+                if (pos3 + 1 == i)
+                    return false;
+                count3++;
+                pos3 = i;
+            }
+        }
+        return count3 == 3;
+    }
+    public static boolean modThree(int[] nums) {
+        int oddCount = 0;
+        int evenCount = 0;
+        for (int e : nums) {
+            if (e % 2 == 0) {
+                evenCount++;
+                oddCount = 0;
+            }
+            else {
+                oddCount++;
+                evenCount = 0;
+            }
+            if (oddCount == 3 || evenCount == 3)
+                return true;
+        }
+        return false;
+    }
+    public static boolean has12(int[] nums) {
+        int flag = 0;
+        for (int e : nums) {
+            if (flag == 0 && e == 1)
+                flag = 1;
+            if (flag == 1 && e == 2)
+                return true;
+        }
+        return false;
+    }
+    public static boolean has77(int[] nums) {
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (nums[i] == 7 && (nums[i + 1] == 7 || nums[i + 2] == 7))
+                return true;
+            if (nums[i + 1] == 7 && nums[i + 2] == 7)
+                return true;
+        }
+        return false;
+    }
+    public static int matchUp(int[] nums1, int[] nums2) {
+        int count = 0;
+        for (int i = 0; i < nums1.length; i++)
+            if (nums1[i] != nums2[i] && Math.abs(nums1[i] - nums2[i]) <= 2)
+                count++;
+        return count;
+    }
+    public static boolean either24(int[] nums) {
+        int flag22 = 0;
+        int flag44 = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 2 && nums[i + 1] == 2 && flag22 == 0)
+                flag22 = 1;
+            if (nums[i] == 4 && nums[i + 1] == 4 && flag44 == 0)
+                flag44 = 1;
+        }
+        return flag22 != flag44;
+    }
+    public static boolean isEverywhere(int[] nums, int val) {
+        if (nums.length < 2)
+            return true;
+        for (int i = 0; i < nums.length; i++)
+            if (nums[i] != val && nums[i +1] != val)
+                return false;
+        return true;
+    }
+    public static boolean no14(int[] nums) {
+        if (nums.length < 2)
+            return true;
+        int flag1 = 0;
+        int flag4 = 0;
+        for (int e : nums) {
+            if (e == 1)
+                flag1 = 1;
+            if (e == 4)
+                flag4 = 1;
+        }
+        return flag1 != flag4;
+    }
+    public static String[] fizzArray2(int n) {
+        String[] temp = new String[n];
+        for (int i = 0; i < temp.length; i++)
+            temp[i] = String.valueOf(i);
+        return temp;
+    }
+    public static boolean only14(int[] nums) {
+        for (int e : nums)
+            if (e != 1 && e != 4)
+                return false;
+        return true;
+    }
+    public static int[] fizzArray(int n) {
+        int[] temp = new int[n];
+        for (int i = 0; i < temp.length; i++)
+            temp[i] = i;
+        return temp;
+    }
+    public static boolean more14(int[] nums) {
+        int flag = 0;
+        for (int e : nums) {
+            if (e == 1)
+                flag++;
+            if (e == 4)
+                flag--;
+        }
+        return flag > 0;
+    }
+    public static boolean sum28(int[] nums) {
+        int sum = 0;
+        for (int e : nums)
+            if (e == 2)
+                sum += e;
+         return sum == 8;
+    }
+    public static boolean lucky13(int[] nums) {
+        for (int e : nums)
+            if (e == 1 || e == 3)
+                return false;
+        return true;
+    }
+    public static boolean has22(int[] nums) {
+        for (int i = 0; i < nums.length - 1; i++)
+            if (nums[i] == 2 && nums[i + 1] == 2)
+                return true;
+        return false;
+    }
+    public static int sum67(int[] nums) {
+        int flag = 0;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (flag == 0) {
+                if (nums[i] == 6) flag = 1;
+                else sum += nums[i];
+            }
+            if (flag == 1 && nums[i] == 7) flag = 0;
+        }
+        return sum;
+    }
+    public static int sum13(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 13) {
+                i++;
+                continue;
+            }
+            sum += nums[i];
+        }
+        return sum;
+    }
+    public static int centeredAverage(int[] nums) {
+        int min = nums[0];
+        int max = nums[0];
+        int sum = 0;
+        for (int e : nums) {
+            min = Math.min(min, e);
+            max = Math.max(max, e);
+            sum += e;
+        }
+        sum = sum - max - min;
+        return sum / (nums.length - 2);
+    }
+    public static int bigDiff(int[] nums) {
+        int min = nums[0];
+        int max = nums[0];
+        int sum = 0;
+        for (int e : nums) {
+            min = Math.min(min, e);
+            max = Math.max(max, e);
+        }
+        return max - min;
+    }
+    public static int countEvens(int[] nums) {
+        int num = 0;
+        for (int e : nums)
+            num += e % 2 == 0 ? 1 : 0;
+        return num;
+    }
+    private static void sh(int[] nums) {
+        for (int e : nums)
+            System.out.print(e + ", ");
+    }
+    private static void sh(String[] temp) {
+        for (String e : temp)
+            System.out.print(e + ", ");
+    }
+    private static void sh(Object ob) {
+        System.out.println(ob);
+    }
+}

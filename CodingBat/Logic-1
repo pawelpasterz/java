@@ -1,0 +1,157 @@
+public class Logic1 {
+    public static int sumLimit(int a, int b) {
+        return String.valueOf(a + b).length() == String.valueOf(a).length() ? a + b : a;
+    }
+    public static boolean shareDigit(int a, int b) {
+        if (a / 10 == b / 10 || a / 10 == b % 10) return true;
+        if (a % 10 == b / 10 || a % 10 == b % 10) return true;
+        return false;
+    }
+    public static int blueTicket(int a, int b, int c) {
+        if (a + b == 10 || a + c == 10 || b + c == 10) return 10;
+        if (a + b >= b + c + 10 || a + b >= a + c + 10) return 5;
+        return 0;
+    }
+    public static int greenTicket(int a, int b, int c) {
+        int temp = 20;
+        if (a != b) {
+            if (a != c && b != c) temp = 0;
+            else temp = 10;
+        }
+        else if (b != c) temp = 10;
+        return temp;
+    }
+    public static int redTicket(int a, int b, int c) {
+        int temp = 0;
+        if (b == c) {
+            if (a == b) {
+                if (a == 2) temp = 10;
+                else temp = 5;
+            }
+            else temp = 1;
+        }
+        else if (a != b && a != c) temp = 1;
+        return temp;
+    }
+    public static int maxMod5(int a, int b) {
+        if (a == b) return 0;
+        if (a % 5 == b % 5) return a > b ? b : a;
+        return a > b ? a : b;
+    }
+    public static int withoutDoubles(int die1, int die2, boolean noDoubles) {
+        if (noDoubles && die1 == die2)
+            die1 = die1 == 6 ? 1 : ++die1;
+        return die1 + die2;
+    }
+    public static boolean lessBy10(int a, int b, int c) {
+        return Math.abs(a - b) >= 10 || Math.abs(a - c) >= 10 || Math.abs(b - c) >= 10;
+    }
+    public static boolean lastDigit(int a, int b, int c) {
+        return a % 10 == b % 10 || b % 10 == c % 10 || a % 10 == c % 10;
+    }
+    public static boolean inOrderEqual(int a, int b, int c, boolean equalOk) {
+        if (!equalOk)
+            return a < b && b < c;
+        else
+            return a <= b && b <= c;
+    }
+    public static boolean inOrder(int a, int b, int c, boolean bOk) {
+        return (a < b || bOk) && b < c;
+    }
+    public static boolean twoAsOne(int a, int b, int c) {
+        return a + b == c || a + c == b || b + c == a;
+    }
+    public static String fizzString2(int n) {
+        String temp = "";
+        if (n % 3 == 0) temp += "Fizz";
+        if (n % 5 == 0) temp += "Buzz";
+        if (temp.length() == 0) temp += n;
+        return "\"" + temp + "!\"";
+
+    }
+    public static String fizzString(String str) {
+        if (str.startsWith("f") && str.endsWith("b")) return "FizzBuzz";
+        if (str.startsWith("f")) return "Fizz";
+        if (str.endsWith("b")) return "Buzz";
+        return str;
+    }
+    public static int teaParty(int tea, int candy) {
+        if (tea < 5 || candy < 5) return 0;
+        if ( 2 * tea <= candy || 2 * candy <= tea) return 2;
+        return 1;
+    }
+    public static boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
+        return (isMom || !isMorning) && !isAsleep;
+    }
+    public static int teenSum(int a, int b) {
+        if ((a >= 13 && a <= 19) || (b >= 13 && b <= 19)) return 19;
+        return a + b;
+    }
+    public static boolean nearTen(int num) {
+        return num % 10 <= 2 || num % 10 >= 8;
+    }
+    public static boolean less20(int n) {
+        return Math.abs((n % 20) - 20) <= 2 && n % 20 != 0;
+    }
+    public static boolean old35(int n) {
+        return (n % 3 == 0 || n % 5 == 0) && n % 15 != 0;
+    }
+    public static boolean more20(int n) {
+        return n % 20 <= 2 && n % 20 != 0;
+    }
+    public static boolean specialEleven(int n) {
+        return Math.abs(n % 11) <= 1;
+    }
+    public static boolean in1To10(int n, boolean outsideMode) {
+        if (n == 1 || n == 10) return true;
+        if (n >= 1 && n <= 10)
+            return !outsideMode;
+        return outsideMode;
+    }
+    public static boolean love6(int a, int b) {
+        if (a == 6 || b ==6) return true;
+        if (a + b == 6) return true;
+        if (Math.abs(a - b) == 6) return true;
+        return false;
+    }
+    public static String alarmClock(int day, boolean vacation) {
+        if (day >= 1 && day <= 5) {
+            if (vacation) return "10:00";
+            else return "7:00";
+        }
+        if (vacation) return "off";
+        return "10:00";
+    }
+    public static int sortaSum(int a, int b) {
+        int sum = a + b;
+        return sum <= 19 && sum >= 10 ? 20 : sum;
+    }
+    public static int caughtSpeeding(int speed, boolean isBirthday) {
+        int lowerLimit = 60;
+        int upperLimit = 80;
+        if (isBirthday) {
+            lowerLimit += 5;
+            upperLimit += 5;
+        }
+        if (speed <= lowerLimit) return 0;
+        if (speed <= upperLimit) return 1;
+        return 2;
+    }
+    public static boolean squirrelPlay(int temp, boolean isSummer) {
+        if (temp < 60) return false;
+        if (temp <= 100) {
+            if (isSummer) return true;
+            else if (temp <= 90) return true;
+        }
+        return false;
+    }
+    public static int dateFashion(int you, int date) {
+        if (you <= 2 || date <= 2) return 0;
+        if (you >= 8 || date >= 8) return 2;
+        return 1;
+    }
+    public static boolean cigarParty(int cigars, boolean isWeekend) {
+        if (cigars >= 40 && (cigars <= 60 || isWeekend)) return true;
+        return false;
+    }
+}

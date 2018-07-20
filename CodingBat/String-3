@@ -1,0 +1,107 @@
+public class String3 {
+   public static String notReplace(String str) {
+        str = " " + str + " ";
+        int ind = str.indexOf("is");
+        while (ind != -1) {
+            if (!Character.isLetter(str.charAt(ind - 1)) && !Character.isLetter(str.charAt(ind + 2)))
+                str = str.substring(0, ind + 2) + " not" + str.substring(ind + 2);
+            ind = str.indexOf("is" , ind + 2);
+        }
+        return str.substring(1, str.length() - 1);
+    }
+    public static int sumNumbers(String str) {
+        int sum = 0;
+        str = str + "x";
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                for (int j = i; j < str.length(); j++) {
+                    if (!Character.isDigit(str.charAt(j))) {
+                        sum += Integer.parseInt(str.substring(i, j));
+                        i = j;
+                        break;
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+    public static int maxBlock(String str) {
+        int max = 0;
+        for (int i = 0; i < str.length(); i++) {
+            int counts = 0;
+            for (int j = i; j < str.length(); j++) {
+                if (str.charAt(i) == str.charAt(j)) counts++;
+                else break;
+            }
+            max = counts > max ? counts : max;
+        }
+        return max;
+    }
+    public static String mirrorEnds(String string) {
+        String result = "";
+        for (int i = 0; i <= string.length(); i ++)
+            if (string.substring(0, i).equals(new StringBuilder(string).reverse().substring(0, i)))
+                result = string.substring(0, i);
+        return result;
+    }
+    public static String sameEnds(String string) {
+        String result = "";
+        for (int i = 0; i <= string.length() / 2; i ++)
+            if (string.substring(0, i).equals(string.substring(string.length() - i)))
+                result = string.substring(0, i);
+        return result;
+    }
+    public static int sumDigits(String str) {
+        int sum = 0;
+        for (int i = 0; i < str.length(); i++)
+            if (Character.isDigit(str.charAt(i)))
+                sum += Integer.parseInt(str.substring(i, i + 1));
+        return sum;
+    }
+    public static int countTriple(String str) {
+        int counts = 0;
+        for (int i = 0; i < str.length() - 2; i++) {
+            if (str.charAt(i) == str.charAt(i + 1) && str.charAt(i + 1) == str.charAt(i + 2))
+                counts++;
+        }
+        return counts;
+    }
+    public static  boolean gHappy(String str) {
+        str = "a" + str + "a";
+        for (int i = 1; i < str.length() - 1; i++)
+            if (str.charAt(i) == 'g')
+               if (str.charAt(i - 1) != 'g' && str.charAt(i + 1) != 'g') return false;
+        return true;
+    }
+    public static boolean equalIsNot(String str) {
+        int indIs = str.indexOf("is");
+        int indNot = str.indexOf("not");
+        while (true) {
+            indIs = str.indexOf("is", indIs + 1);
+            indNot = str.indexOf("not", indNot + 1);
+            if (indIs == -1 && indNot == -1) break;
+            if (indIs == -1 || indNot == -1) return false;
+        }
+        return true;
+    }
+    public static String withoutString(String base, String remove) {
+        StringBuilder temp = new StringBuilder(base);
+        int ind = temp.toString().toLowerCase().indexOf(remove.toLowerCase());
+        while (ind != -1) {
+            temp.delete(ind, ind + remove.length());
+            ind = temp.toString().toLowerCase().indexOf(remove.toLowerCase());
+        }
+        return temp.toString();
+    }
+    public static int countYZ(String str) {
+        int counts = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.toLowerCase().charAt(i) == 'y' || str.toLowerCase().charAt(i) == 'z') {
+                if (i == str.length() - 1) counts++;
+                else if (!Character.isLetter(str.charAt(i + 1))) counts++;
+            }
+        }
+        return counts;
+    }
+    public static void sh(Object ob) { System.out.println(ob); }
+}

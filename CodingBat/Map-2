@@ -1,0 +1,90 @@
+public class Map2 {
+    public static String[] firstSwap(String[] strings) {
+        Map<String, Integer> temp = new HashMap<>();
+        Map<String, Boolean> isUsed = new HashMap<>();
+        for (int i = 0; i < strings.length; i++) {
+            String temp2 = String.valueOf(strings[i].charAt(0));
+            if (temp.containsKey(temp2) && !isUsed.getOrDefault(temp2, false)) {
+                String temp3 = strings[i];
+                strings[i] = strings[temp.get(temp2)];
+                strings[temp.get(temp2)] = temp3;
+                temp.remove(temp2);
+                isUsed.put(temp2, true);
+            } else
+                temp.put(temp2, i);
+        }
+        return strings;
+    }
+    public static String[] allSwap(String[] strings) {
+        Map<String, Integer> temp = new HashMap<>();
+        for (int i = 0; i < strings.length; i++) {
+            String temp2 = String.valueOf(strings[i].charAt(0));
+            if (temp.containsKey(temp2)) {
+                String temp3 = strings[i];
+                strings[i] = strings[temp.get(temp2)];
+                strings[temp.get(temp2)] = temp3;
+                temp.remove(temp2);
+            } else
+                temp.put(temp2, i);;
+        }
+        return strings;
+    }
+    public static Map<String, Boolean> wordMultiple(String[] strings) {
+        Map<String, Boolean> temp = new HashMap<>();
+        Map<String, Integer> temp2 = new HashMap<>();
+        for (String s : strings)
+            temp2.put(s, temp2.getOrDefault(s, 0) + 1);
+        temp2.forEach((v, k) -> {
+            temp.put(v, k > 1 );
+        });
+        return temp;
+    }
+    public static String wordAppend(String[] strings) {
+        Map<String, Integer> map = new HashMap<>();
+        String result = "";
+        for (int i = 0; i < strings.length; i++ ) {
+            int val = map.getOrDefault(strings[i], 0) + 1;
+            map.put(strings[i], val);
+            if  (val % 2 == 0)
+                result += strings[i];
+        }
+        return result;
+    }
+    public static Map<String, String> firstChar(String[] strings) {
+        Map<String, String> temp = new HashMap<>();
+        for (String s : strings)
+            temp.put(s.substring(0, 1), temp.getOrDefault(s.substring(0, 1), "") + s);
+        return temp;
+    }
+    public static Map<String, Integer> wordCount(String[] strings) {
+        Map<String, Integer> temp = new HashMap<>();
+        for (String s : strings)
+            temp.put(s, temp.getOrDefault(s, 0) + 1);
+        return temp;
+    }
+    public static Map<String, String> pairs(String[] strings) {
+        Map<String, String> temp = new HashMap<>();
+        for (String s : strings)
+            temp.put(s.substring(0, 1), s.substring(s.length() - 1));
+        return temp;
+    }
+    public static Map<String, Integer> wordLen(String[] strings) {
+        Map<String, Integer> temp = new HashMap<>();
+        for (String s : strings)
+            temp.put(s, s.length());
+        return temp;
+    }
+    public static Map<String, Integer> word0(String[] strings) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String e : strings)
+            map.put(e, 0);
+        return map;
+    }
+    private static void sh(String[] string) {
+        for (String s : string)
+            System.out.print(s + ", ");
+    }
+    private static void sh(Object ob) {
+        System.out.println(ob);
+    }
+}

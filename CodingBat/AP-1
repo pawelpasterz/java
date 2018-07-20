@@ -1,0 +1,223 @@
+public class AP1 {
+    public static int commonTwo(String[] a, String[] b) {
+        int count = 0;
+        String prevA = "";
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == prevA) continue;
+            prevA = a[i];
+            String prevB = "";
+            for (int j = 0; j < b.length; j++) {
+                if (b[j] == prevB) continue;
+                prevB = b[j];
+                if (prevA == prevB) count++;
+            }
+        }
+        return count;
+    }
+
+    public static String[] mergeTwo(String[] a, String[] b, int n) {
+        String[] temp = new String[n];
+        int iRes = 0;
+        int iA = 0;
+        int iB = 0;
+        while (iRes < n) {
+            if (a[iA].compareTo(b[iB]) < 0) temp[iRes++] = a[iA++];
+            else if (a[iA].compareTo(b[iB]) > 0) temp[iRes++] = b[iB++];
+            else {
+                temp[iRes++] = a[iA++];
+                iB++;
+            }
+        }
+        return temp;
+    }
+
+    public static int userCompare(String aName, int aId, String bName, int bId) {
+        if (aName.compareTo(bName) > 0) return 1;
+        if (aName.compareTo(bName) < 0) return -1;
+        if (aId > bId) return 1;
+        if (aId < bId) return -1;
+        return 0;
+    }
+
+    public static int bigHeights(int[] heights, int start, int end) {
+        int count = 0;
+        for (int i = start; i < end; i++)
+            if (Math.abs(heights[i] - heights[i + 1]) >= 5) count++;
+        return count;
+    }
+
+    public static int sumHeights2(int[] heights, int start, int end) {
+        int alt = 0;
+        int fact = 1;
+        for (int i = start; i < end; i++) {
+            if (heights[i] < heights[i + 1]) fact = 2;
+            alt += fact * Math.abs(heights[i] - heights[i + 1]);
+            fact = 1;
+        }
+        return alt;
+    }
+
+    public static int sumHeights(int[] heights, int start, int end) {
+        int alt = 0;
+        for (int i = start; i < end; i++)
+            alt += Math.abs(heights[i] - heights[i + 1]);
+        return alt;
+    }
+
+    public static int scoresSpecial(int[] a, int[] b) {
+        return scoresSpecialHelper(a) + scoresSpecialHelper(b);
+    }
+
+    public static int scoresSpecialHelper(int[] nums) {
+        int max = 0;
+        for (int e : nums)
+            if (e % 10 == 0)
+                max = max > e ? max : e;
+        return max;
+    }
+
+    public static String[] wordsWithout(String[] words, String target) {
+        int count = 0;
+        for (String s : words)
+            if (!s.equals(target))
+                count++;
+        String[] temp = new String[count];
+        for (int i = words.length - 1; i >= 0; i--)
+            if (!words[i].equals(target))
+                temp[--count] = words[i];
+        return temp;
+    }
+
+    public static int scoreUp(String[] key, String[] answers) {
+        int result = 0;
+        for (int i = 0; i < key.length; i++) {
+            if (key[i].equals(answers[i])) {
+                result += 4;
+                continue;
+            }
+            if (answers[i].equals("?")) continue;
+            result -= 1;
+        }
+        return result;
+    }
+
+    public static int matchUp(String[] a, String[] b) {
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i].isEmpty() || b[i].isEmpty()) continue;
+            if (a[i].charAt(0) == b[i].charAt(0)) count++;
+        }
+        return count;
+    }
+
+    public static boolean isEndy(int n) {
+        return (n >= 0 && n <= 10) || (n >= 90 && n <= 100);
+    }
+
+    public static int[] copyEndy(int[] nums, int count) {
+        int[] temp = new int[count];
+        int ind = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (isEndy(nums[i])) temp[ind++] = nums[i];
+            if (ind == count) break;
+        }
+        return temp;
+    }
+
+    public static int[] copyEvens(int[] nums, int count) {
+        int[] temp = new int[count];
+        int ind = 0;
+        for (int e : nums)
+            if (e % 2 == 0) {
+                temp[ind++] = e;
+                if (ind >= count) break;
+            }
+        return temp;
+    }
+
+    public static boolean dividesSelf(int n) {
+        int temp = n;
+        while (temp != 0) {
+            if (temp % 10 == 0) return false;
+            if (n % (temp % 10) != 0) return false;
+            temp /= 10;
+        }
+        return true;
+    }
+
+    public static boolean hasOne(int n) {
+        int i = n;
+        while (i != 0) {
+            if (i % 10 == 1) return true;
+            i /= 10;
+        }
+        return false;
+    }
+
+    public static List<String> wordsWithoutList(String[] words, int len) {
+        List<String> temp = new ArrayList<>();
+        for (String s : words)
+            if (s.length() != len)
+                temp.add(s);
+        return temp;
+    }
+
+    public static String[] wordsFront(String[] words, int n) {
+        String[] temp = new String[n];
+        for (int i = 0; i < n; i++)
+            temp[i] = words[i];
+        return temp;
+    }
+
+    public static int wordsCount(String[] words, int len) {
+        int counts = 0;
+        for (String s : words)
+            if (s.length() == len)
+                counts++;
+        return counts;
+    }
+
+    public static int scoresAverageHelper(int[] scores, int start, int end) {
+        int sum = 0;
+        for (int i = start; i <= end; i++)
+            sum += scores[i];
+        return sum / (end - start + 1);
+    }
+
+    public static int scoresAverage(int[] scores) {
+        int firstHalf = scoresAverageHelper(scores, 0, scores.length / 2 - 1);
+        int secondHalf = scoresAverageHelper(scores, scores.length / 2, scores.length - 1);
+        return firstHalf > secondHalf ? firstHalf : secondHalf;
+    }
+
+    public static boolean scoresClump(int[] scores) {
+        for (int i = 1; i < scores.length - 1; i++)
+            if (Math.abs(scores[i] - scores[i - 1]) <= 2 && Math.abs(scores[i] - scores[i + 1]) <= 2 && Math.abs(scores[i - 1] - scores[i + 1]) <= 2)
+                return true;
+        return false;
+    }
+
+    public static boolean scores100(int[] scores) {
+        for (int i = 1; i < scores.length; i++)
+            if (scores[i] == 100 && scores[i - 1] == 100) return true;
+        return false;
+    }
+
+    public static boolean scoresIncreasing(int[] scores) {
+        for (int i = 1; i < scores.length; i++)
+            if (scores[i] < scores[i - 1]) return false;
+        return true;
+    }
+
+    public static void sh(int[] temp) {
+        for (int e : temp) System.out.print(e + ", ");
+    }
+
+    public static void sh(String[] str) {
+        for (String s : str) System.out.print(s + ", ");
+    }
+
+    public static void sh(Object ob) {
+        System.out.println(ob);
+    }
+}
